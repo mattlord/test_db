@@ -45,16 +45,13 @@ CREATE TABLE employees (
     last_name   VARCHAR(16)     NOT NULL,
     gender      ENUM ('M','F')  NOT NULL,    
     hire_date   DATE            NOT NULL,
-    PRIMARY KEY (emp_no),
-    KEY (birth_date),
-    KEY (last_name, first_name)
+    PRIMARY KEY (emp_no)
 );
 
 CREATE TABLE departments (
     dept_no     CHAR(4)         NOT NULL,
     dept_name   VARCHAR(40)     NOT NULL,
-    PRIMARY KEY (dept_no),
-    UNIQUE  KEY (dept_name)
+    PRIMARY KEY (dept_no)
 );
 
 CREATE TABLE dept_manager (
@@ -93,8 +90,7 @@ CREATE TABLE salaries (
     from_date   DATE            NOT NULL,
     to_date     DATE            NOT NULL,
     FOREIGN KEY (emp_no) REFERENCES employees (emp_no) ON DELETE CASCADE,
-    PRIMARY KEY (emp_no, from_date),
-    KEY (salary, from_date, to_date)
+    PRIMARY KEY (emp_no, from_date)
 ) 
 ; 
 
@@ -126,3 +122,4 @@ SELECT 'LOADING salaries' as 'INFO';
 source load_salaries1.dump ;
 source load_salaries2.dump ;
 source load_salaries3.dump ;
+source add_secondary_keys.sql;
